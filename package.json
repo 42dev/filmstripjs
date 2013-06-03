@@ -1,0 +1,13 @@
+{
+  "name": "Filmstrip",
+  "repository" : { 
+    "type" : "git", 
+    "url" : "https://github.com/42dev/filmstripjs.git"
+  },
+  "description": "Plays pngs like a video.",
+  "author": "Paul Klopping and others at 42 <42@the42.com>",
+  "dependencies" :{
+    "grunt-contrib-coffee": "~0.7.0",
+    "grunt-contrib-jasmine": "~0.3.3"
+  }
+}
