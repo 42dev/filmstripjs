@@ -44,12 +44,10 @@ class window.Filmstrip
 		@generate_images()
 
 		if @frames.length > 0
+			@totalFrames = @frames.length
 			@currFrame = 0
 			@show_with_buffer()
-
 			
-		@totalFrames = @frames.length
-
 		if typeof @options.setup_cbfn is "function"
 			@options.setup_cbfn()
 
@@ -171,7 +169,7 @@ class window.Filmstrip
 
 	show_with_buffer: ()->
 		min_frame = @bound_frame_index(@currFrame - 5)
-		max_frame = @bound_frame_index(@currFrame + 5)
+		max_frame = @bound_frame_index(@currFrame + 6) # slice upper bounds are not inclusive
 		@$container.empty()
 		@$container.append(@frames.slice(min_frame, max_frame))
 		@frames[@currFrame].show()
