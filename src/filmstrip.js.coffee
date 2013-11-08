@@ -44,10 +44,10 @@ class window.Filmstrip
 		@generate_images()
 
 		if @frames.length > 0
-			@frames[0].show()
+			@totalFrames = @frames.length
+			@currFrame = 0
+			@show_with_buffer()
 			
-		@totalFrames = @frames.length
-
 		if typeof @options.setup_cbfn is "function"
 			@options.setup_cbfn()
 
@@ -83,8 +83,8 @@ class window.Filmstrip
 			return
 
 		@frames[@currFrame].hide()
-		@frames[frame_index].show()
 		@currFrame = frame_index
+		@show_with_buffer()
 
 
 	#
@@ -132,8 +132,8 @@ class window.Filmstrip
 				@currFrame++
 			else
 				@currFrame--
-			# show the next frame
-			@frames[@currFrame].show()
+			# update buffer
+			@show_with_buffer()
 
 			#call back
 			if typeof @options.post_showFrame_cbfn is 'function'
@@ -153,7 +153,6 @@ class window.Filmstrip
 		#generate all the images
 		for url in @options.frame_urls
 			$frame = $('<img src="'+url+'" style="display:none;" />')
-			@$container.append($frame)
 			@frames.push($frame)
 
 
@@ -166,3 +165,12 @@ class window.Filmstrip
 		if @totalFrames == 0
 			return undefined
 		Math.max(Math.min(frame_index, @totalFrames-1), 0)
+
+
+	show_with_buffer: ()->
+		min_frame = @bound_frame_index(@currFrame - 5)
+		max_frame = @bound_frame_index(@currFrame + 6) # slice upper bounds are not inclusive
+		@$container.empty()
+		@$container.append(@frames.slice(min_frame, max_frame))
+		@frames[@currFrame].show()
+		
