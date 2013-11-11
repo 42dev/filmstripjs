@@ -171,6 +171,6 @@ class window.Filmstrip
 		min_frame = @bound_frame_index(@currFrame - 5)
 		max_frame = @bound_frame_index(@currFrame + 6) # slice upper bounds are not inclusive
 		@$container.empty()
-		@$container.append(@frames.slice(min_frame, max_frame))
+		@$container.append(@frames.slice(min_frame, max_frame+1))
 		@frames[@currFrame].show()
 		
