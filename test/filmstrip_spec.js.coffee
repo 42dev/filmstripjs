@@ -14,8 +14,6 @@ describe "filmstrip coffee", ->
     @filmstrip2 = new Filmstrip(@options)
 
 
-
-
   describe "constructor", ->
     it "has the correct totalFrames value", ->    
       expect(@filmstrip.totalFrames).toEqual(10)
