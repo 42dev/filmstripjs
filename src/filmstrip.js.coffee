@@ -176,7 +176,7 @@ class window.Filmstrip
     for frame in @frames
       frame.hide()
 
-    for i in [min_frame...max_frame]
+    for i in [min_frame...max_frame+1]
       $frame = @frames[i-min_frame]
       $frame.attr("src", @images[i])
       if i == @currFrame
