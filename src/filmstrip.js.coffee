@@ -82,8 +82,6 @@ class window.Filmstrip
     # Do nothing if frame_index is undefined
     if frame_index is undefined
       return
-
-    @frames[@currFrame].hide()
     @currFrame = frame_index
     @show_with_buffer()
 
@@ -128,7 +126,6 @@ class window.Filmstrip
       @options.pre_showFrame_cbfn(@currFrame) 
     if @currFrame!=frame_index
       # hide the current frame
-      @frames[@currFrame].hide()
       if frame_index > @currFrame
         @currFrame++
       else
@@ -175,6 +172,9 @@ class window.Filmstrip
   show_with_buffer: ()->
     min_frame = @bound_frame_index(@currFrame - 5)
     max_frame = @bound_frame_index(@currFrame + 5)
+
+    for frame in @frames
+      frame.hide()
 
     for i in [min_frame...max_frame]
       $frame = @frames[i-min_frame]
