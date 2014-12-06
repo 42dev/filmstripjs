@@ -1,2 +1,6 @@
 build
 node_modules
+.grunt
+_SpecRunner.html
+
+**/*.swp
