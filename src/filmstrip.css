@@ -1,0 +1,7 @@
+.filmstrip_js_stage{
+  img.hidden{
+    visibility: none;
+    height: 0;
+    width: 0;
+  }
+}
