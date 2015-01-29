@@ -178,7 +178,7 @@ class window.Filmstrip
       $frame = @frames[i-min_frame]
       $frame.attr("src", @images[i])
       if i == @currFrame
-        $frame.removeClass()
+        $frame.removeClass("hidden")
       else
         $frame.addClass("hidden")
     
