@@ -41,6 +41,7 @@ class window.Filmstrip
 
     $.extend(@options, opts)
     @$container = $(@options.image_container_selector).empty()
+    @$container.addClass("filmstrip_js_stage")
     @generate_images()
     @images = @options.frame_urls
 
@@ -150,7 +151,7 @@ class window.Filmstrip
   generate_images: () =>
     #generate all the images
     for i in [0...11]
-      $frame = $('<img/>').hide()
+      $frame = $('<img/>').addClass("hidden")
       @frames.push($frame)
     console.log(@frames)
     @$container.append(@frames)
@@ -173,12 +174,11 @@ class window.Filmstrip
     min_frame = @bound_frame_index(@currFrame - 5)
     max_frame = @bound_frame_index(@currFrame + 5)
 
-    for frame in @frames
-      frame.hide()
-
     for i in [min_frame...max_frame+1]
       $frame = @frames[i-min_frame]
       $frame.attr("src", @images[i])
       if i == @currFrame
-        $frame.show()
+        $frame.removeClass("hidden")
+      else
+        $frame.addClass("hidden")
     
